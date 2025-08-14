@@ -1,0 +1,34 @@
+[project]
+name = "summer-year1-tutorials"
+version = "0.0.1"
+description = "Programs which manipulate DNA and other bioinformatics purposes"
+license = {file = "LICENSE.txt"}
+authors = [{name = "Rebekah Newman", email = "rebekah.s.newman@gmail.com"}]
+readme = "README.md"
+keywords = [
+    "bioinformatics",
+    "DNA Sequence",
+]
+requires-python = ">=3.12"
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3.11"
+]
+
+# Dynamically load dependencies
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools_scm]
+
+[tool.setuptools.packages.find]
+where = ["."]  # Look for packages in the 'root' directory
+include = ["summer-year1-tutorials*"]
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
