@@ -3,6 +3,11 @@
 # Given the following sequence:
 example_seq = "aggagtaagcccttgcaactggaaatacacccattg"
 # The output should be "aggaguaagcccuugcaacuggaaauacacccauug"
+
+from summer_year1_tutorials import logger
+from summer_year1_tutorials
+
+
 def transcribe(dna_seq):
     """Transcribes DNA to RNA by replacing T with U."""
     return dna_seq.upper().replace("T","U")
