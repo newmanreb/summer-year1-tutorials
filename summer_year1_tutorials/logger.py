@@ -32,3 +32,6 @@ def create_logger():
     logger.addHandler(file_handler)
 
     return logger
+
+# Instantiate the logger
+logger = create_logger()

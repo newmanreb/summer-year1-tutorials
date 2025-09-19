@@ -1,6 +1,5 @@
 import string
-from summer_year1_tutorials.logger import create_logger
-logger = create_logger()
+from summer_year1_tutorials.logger import logger
 
 def dna_integrity_check(seq):
     """
@@ -24,6 +23,4 @@ def dna_integrity_check(seq):
         logger.error("Invalid base found in sequence, only use ATGC characters.")
         raise ValueError("Invalid base found in sequence, only use ATGC characters.")
 
-    return True
-
-print(dna_integrity_check("atcgu"))
+    return "Input sequence is DNA."
