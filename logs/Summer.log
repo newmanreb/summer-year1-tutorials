@@ -13,3 +13,4 @@
 2025-09-19 13:53:08,756 [ERROR]: Uracil (U) found in sequence, check that sequence is DNA not RNA.
 2025-09-19 13:53:08,756 [ERROR]: Invalid base found in sequence, only use ATGC characters.
 2025-09-19 13:53:49,664 [ERROR]: Sequence input must be a string.
+2025-09-22 13:53:21,752 [ERROR]: Invalid base found in sequence, only use ATGC characters.
