@@ -14,3 +14,12 @@
 2025-09-19 13:53:08,756 [ERROR]: Invalid base found in sequence, only use ATGC characters.
 2025-09-19 13:53:49,664 [ERROR]: Sequence input must be a string.
 2025-09-22 13:53:21,752 [ERROR]: Invalid base found in sequence, only use ATGC characters.
+2025-09-24 16:27:49,908 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:30:05,817 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:31:35,621 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:32:07,270 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:33:06,435 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:33:33,801 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:39:18,646 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:39:18,778 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
+2025-09-24 16:54:53,722 [ERROR]: Chunking failed with exception: unsupported operand type(s) for +: 'int' and 'str'
