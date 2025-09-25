@@ -61,6 +61,6 @@ def chunk_text(sequence, block_size, seq_type="DNA"):
 
     return chunks
 
-#sequence1 = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTACG"
-sequence2 = "GCUGAGACUUCCUGGACGGGGGACAGGCUGUGGGGUUUCUACG"
-chunk_text(sequence2, 10, "RNA")
+if __name__ == "__main__":
+    sequence2 = "GCUGAGACUUCCUGGACGGGGGACAGGCUGUGGGGUUUCUACG"
+    chunk_text(sequence2, 10, "RNA")

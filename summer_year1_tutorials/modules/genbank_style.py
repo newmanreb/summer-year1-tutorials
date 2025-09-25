@@ -31,37 +31,42 @@ def genbank_format(sequence, block_size=10, blocks_per_row=6, seq_type="DNA"):
         If seq_type is "DNA" and the sequence contains uracil (U).
         If seq_type is "DNA" and the sequence contains invalid bases (anything other than A, T, G, or C).
     """
-    sequence = "".join(sequence.split()).lower()        # Remove whitespace and force lowercase on input.
+    sequence = "".join(sequence.split()).lower()            # Remove whitespace and force lowercase on input.
 
-    if not sequence.isalpha():                          # Check for non-alpha characters in input.
+    if not sequence.isalpha():                              # Check for non-alpha characters in input.
         logger.warning("Sequence contains non-alphabetic characters. Check input for digits or symbols.")
 
-    if seq_type == "DNA":                               # If input type is DNA, run integrity check.
-        dna_integrity_check(sequence)                   # Ensure all ATGC characters in DNA sequence.
+    if seq_type == "DNA":                                   # If input type is DNA, run integrity check.
+        dna_integrity_check(sequence)                       # Ensure all ATGC characters in DNA sequence.
         logger.info(f"Input DNA sequence passes integrity check.")
-    else:                                               # Print user-provided sequence type to the log.
+    else:                                                   # Print user-provided sequence type to the log.
         logger.info(f"Sequence type provided: {seq_type}")
 
     logger.info("Chunking sequence '{}' into blocks of {}, with {} blocks per row".format(sequence, block_size,
                                                                                           blocks_per_row))
 
-    row_size = block_size * blocks_per_row
+    row_size = block_size * blocks_per_row                  # Rows are made up of blocks of certain length
+    rows = []                                               # Store formatted rows here
 
     try:
-        for start in range(0, len(sequence), row_size):
-            row_seq = sequence[start:start + row_size]
+        for start in range(0, len(sequence), row_size):     # Iterate over the sequence in row-sized chunks
+            row_seq = sequence[start:start + row_size]      # Slice out one row of the sequence
 
-            blocks = []
-            for i in range(0, len(row_seq), block_size):
-                block = row_seq[i:i + block_size]
-                blocks.append(block)
+            blocks = []                                     # Store the smaller blocks for this row
+            for i in range(0, len(row_seq), block_size):    # Break the row into block-sized chunks
+                block = row_seq[i:i + block_size]           # Slice out a block
+                blocks.append(block)                        # Add block to the list
 
-            formatted_row = ' '.join(blocks)
-            print(f"{start + 1:<9}{formatted_row}")
-    except TypeError as e:
+            formatted_row = ' '.join(blocks)                # Join blocks with spaces to form the row string
+            logger.info(f"{start + 1:<9}{formatted_row}")   # Log the row with its starting index
+            rows.append(f"{start + 1:<9}{formatted_row}")   # Add formatted row to resulting list
+    except TypeError as e:                                  # Log the exception if chunking fails
         logger.error("Chunking failed with exception: {}".format(e))
         raise
 
-sequence = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTCACCCTCTGCTCTGGGTAAAGTTCATTGGAACAGAAAGAAATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAAAGGAGCCTACAAGAAAGTACGAGATTTAGTCAACTTGTTGAAGAGCTATTGAAAATCATTTGTGCTTTTCAGCTTGACACAGGTTTGGAGTATGCAAACAGCTATAATTTTGCAAAAAAGGAAAATAACTCTCCTGAACATCTAAAAGATGAAGTTTCTATCATCCAAAGTATGGGCTACAGAAACCGTGCCAAAAGACTTCTACAGAGTGAACCCGAAAATCCTTCCTTGCAGGAAACCAGTCTCAGTGTCCAACTCTCTAACCTTGGAACTGTGAGAACTCTGAGGACAAAGCAGCGGATACAACCTCAAAAGACGTCTGTCTACATTGAATTGGGATCTGATTCTTCTGAAGATACCGTTAATAAGGCAACTTATTGCAGTGTGGGAGATCAAG"
-sequence2 = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTCACCCTCTGCTC"
-genbank_format(sequence2)
+    return "\n".join(rows)                                  # Return all formatted rows as a single string
+
+if __name__ == "__main__":
+    sequence = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTCACCCTCTGCTCTGGGTAAAGTTCATTGGAACAGAAAGAAATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAAAGGAGCCTACAAGAAAGTACGAGATTTAGTCAACTTGTTGAAGAGCTATTGAAAATCATTTGTGCTTTTCAGCTTGACACAGGTTTGGAGTATGCAAACAGCTATAATTTTGCAAAAAAGGAAAATAACTCTCCTGAACATCTAAAAGATGAAGTTTCTATCATCCAAAGTATGGGCTACAGAAACCGTGCCAAAAGACTTCTACAGAGTGAACCCGAAAATCCTTCCTTGCAGGAAACCAGTCTCAGTGTCCAACTCTCTAACCTTGGAACTGTGAGAACTCTGAGGACAAAGCAGCGGATACAACCTCAAAAGACGTCTGTCTACATTGAATTGGGATCTGATTCTTCTGAAGATACCGTTAATAAGGCAACTTATTGCAGTGTGGGAGATCAAG"
+    sequence2 = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTCACCCTCTGCTC"
+    genbank_format(sequence)

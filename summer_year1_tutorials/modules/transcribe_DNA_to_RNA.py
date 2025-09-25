@@ -33,5 +33,6 @@ def transcribe(dna_seq, start_position=1):
 
     return rna_seq
 
-#example_seq = "aggagtaagcccttgcaactggaaatacacccattg"
-#transcribe(example_seq)
+if __name__ == "__main__":
+    example_seq = "aggagtaagcccttgcaactggaaatacacccattg"
+    transcribe(example_seq)

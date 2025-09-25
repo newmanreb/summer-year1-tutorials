@@ -54,8 +54,9 @@ def translate_dna(sequence, start_position=1):
     logger.info(f"Translated protein: {protein.upper()}")
     return protein.upper()
 
-translation_sequence = "aggagtaagcccttgcaactggaaatacacccattg"
-print(translate_dna(translation_sequence))
+if __name__ == "__main__":
+    translation_sequence = "aggagtaagcccttgcaactggaaatacacccattg"
+    print(translate_dna(translation_sequence))
 
-#challenge_sequence = "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAA"
-#print(translate_dna(challenge_sequence))
+    #challenge_sequence = "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAA"
+    #print(translate_dna(challenge_sequence))
