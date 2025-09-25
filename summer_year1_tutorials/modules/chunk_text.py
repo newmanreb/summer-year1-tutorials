@@ -61,6 +61,6 @@ def chunk_text(sequence, block_size, seq_type="DNA"):
 
     return chunks
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     sequence2 = "GCUGAGACUUCCUGGACGGGGGACAGGCUGUGGGGUUUCUACG"
     chunk_text(sequence2, 10, "RNA")
