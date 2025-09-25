@@ -24,7 +24,9 @@ def chunk_text(sequence, block_size, seq_type="DNA"):
     Raises
     ----------
     TypeError
-        If the input type is not a string or if block_size is not an integer.
+        If block_size is not an integer.
+    AttributeError
+        If the input type is not a string.
     ValueError
         If seq_type is "DNA" and the sequence contains uracil (U).
         If seq_type is "DNA" and the sequence contains invalid bases (anything other than A, T, G, or C).
@@ -42,20 +44,23 @@ def chunk_text(sequence, block_size, seq_type="DNA"):
 
     logger.info("Chunking sequence '{}' into blocks of {}".format(sequence, block_size))
 
-    index = 0                                           # Start index at 0
-    sequence_length = len(sequence)                     # Get the length of the input sequence
+    chunks = []                                         # Create an empty list to store each chunk
+    index = 0                                           # Start index at the beginning of the sequence
 
     try:
-        while index < sequence_length:                  # Loop through the length of the sequence
-            block = sequence[index:index + block_size]  # Extract a block of characters by block_size
-            print(block)                                # Print that block
+        while index < len(sequence):                    # Continue looping until end of sequence
+            block = sequence[index: index + block_size] # Extract slice of seq from 'index' to 'index + block_size'
+            chunks.append(block)                        # Add this chunk to the list
             index += block_size                         # Increase the index by the block size to keep going
     except TypeError as e:
         logger.error("Chunking failed with exception: {}".format(e))
         raise
 
-    return index
+    chunked_str = "\n".join(chunks)
+    logger.info(f"Chunked sequence:\n{chunked_str}")
 
-sequence1 = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTACG"
-sequence2 = "GCUGAGACUUCCUGGACGGGGGACAGGCUGUGGGGUUUCUACG"
-chunk_text(sequence2, 10, "RNA")
+    return chunks
+
+if __name__ == "__main__":  # pragma: no cover
+    sequence2 = "GCUGAGACUUCCUGGACGGGGGACAGGCUGUGGGGUUUCUACG"
+    chunk_text(sequence2, 10, "RNA")

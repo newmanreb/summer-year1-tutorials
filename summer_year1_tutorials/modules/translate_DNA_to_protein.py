@@ -32,6 +32,10 @@ def translate_dna(sequence, start_position=1):
         "CGA": "R", "CGG": "R", "AGT": "S", "AGC": "S", "AGA": "R", "AGG": "R", "GGT": "G", "GGC": "G", "GGA": "G",
         "GGG": "G",
     }
+
+    if not isinstance(sequence, str):                   # Enforce string input and raise TypeError otherwise
+        raise TypeError("Input sequence must be a string.")
+
     sequence = "".join(sequence.split()).upper()        # Remove whitespace and enforce uppercase input.
     logger.info(f"Translating {sequence} from position {start_position}.")
     dna_integrity_check(sequence)                       # Run integrity check to ensure all ATGC characters.
@@ -54,8 +58,9 @@ def translate_dna(sequence, start_position=1):
     logger.info(f"Translated protein: {protein.upper()}")
     return protein.upper()
 
-translation_sequence = "aggagtaagcccttgcaactggaaatacacccattg"
-print(translate_dna(translation_sequence))
+if __name__ == "__main__":  # pragma: no cover
+    translation_sequence = "aggagtaagcccttgcaactggaaatacacccattg"
+    print(translate_dna(translation_sequence))
 
-#challenge_sequence = "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAA"
-#print(translate_dna(challenge_sequence))
+    #challenge_sequence = "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAA"
+    #print(translate_dna(challenge_sequence))

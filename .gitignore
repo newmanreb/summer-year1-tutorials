@@ -1,0 +1,9 @@
+logs/
+.coverage
+.idea/
+summer_year1_tutorials.egg-info/
+summer_year1_tutorials/__pycache__/
+summer_year1_tutorials/modules/__pycache__/
+summer_year1_tutorials/utils/__pycache__/
+tests/__pycache__/
+htmlcov/
