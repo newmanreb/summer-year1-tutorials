@@ -36,3 +36,5 @@ def transcribe(dna_seq, start_position=1):
 if __name__ == "__main__":  # pragma: no cover
     example_seq = "aggagtaagcccttgcaactggaaatacacccattg"
     transcribe(example_seq)
+
+    
